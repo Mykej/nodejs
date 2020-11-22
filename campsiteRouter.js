@@ -1,7 +1,7 @@
 const express = require('express');
 const campsiteRouter = express.Router();
 
-campsiteRouter.route('campsiteId')
+campsiteRouter.route('/:campsiteId')
 .all((req, res, next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text-plain');
@@ -10,11 +10,11 @@ campsiteRouter.route('campsiteId')
 .get((req, res, next) => {
 res.end(`Will send details of the campsite: ${req.params.campsiteId} to you`);
 })
-.post('/campsites/:campsiteId', (req, res, next) => {
+.post((req, res, next) => {
     res.statusCode = 403;
     res.end(`POST operation not supported on /campsites/${req.params.campsiteId}`);
 })
-.put('/campsites/:campsiteId', (req, res, next) => {
+.put((req, res, next) => {
     res.write(`Updating the campsite: ${req.params.campsiteId}/n`);
     res.end(`Will update the campsite: ${req.body.name}
         with description: ${req.body.description}`);
