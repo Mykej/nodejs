@@ -1,29 +1,29 @@
 const express = require('express');
-const promotionRouter = express.Router();
+const partnerRouter = express.Router();
 
-promotionRouter.route('/:partners')
+partnerRouter.route('/:partners')
 .all((req, res, next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
 .get((req, res, next) => {
-    res.end(`Will send details of the promotion: ${req.params.promotionId} to you`);
+    res.end(`Will send details of the partner: ${req.params.partnerId} to you`);
 })
 .post((req, res, next) => {
     res.statusCode = 403;
-    res.end(`POST operation not supported on /promotions/${req.params.promotionId}`);
+    res.end(`POST operation not supported on /partners/${req.params.partnerId}`);
 })
 .put((req, res, next) => {
-    res.write(`Updating the promotion: ${req.params.promotionId}/n`);
-    res.end(`Will update the promotion: ${req.body.name}
+    res.write(`Updating the partner: ${req.params.partnerId}/n`);
+    res.end(`Will update the partner: ${req.body.name}
     with description: ${req.body.description}`);
 })
 .delete((req, res, next) => {
-    res.end(`Deleting promotion: ${req.params.promotionId}`);
+    res.end(`Deleting partner: ${req.params.partnerId}`);
 });
 
-campsiteRouter.route('/')
+partnerRouter.route('/')
 .all((req, res, next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
@@ -33,14 +33,14 @@ campsiteRouter.route('/')
     res.end('Will send all the campsites to you');
 })
 .post((req, res) => {
-    res.end(`Will add the promotion: ${req.body.name} with description: ${req.body.description}`);
+    res.end(`Will add the partner: ${req.body.name} with description: ${req.body.description}`);
 })
 .put((req, res) => {
     res.statusCode = 403;
-    res.end('PUT operation not supported on /promotions');
+    res.end('PUT operation not supported on /partners');
 })
 .delete((req, res) => {
-    res.end('Deleting all promotions');
+    res.end('Deleting all partners');
 });
 
-module.exports = promotionRouter;
+module.exports = partnerRouter;
