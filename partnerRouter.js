@@ -1,29 +1,29 @@
-const express = require('/partners');
+const express = require('express');
 const promotionRouter = express.Router();
 
-campsiteRouter.route('/partners')
+promotionRouter.route('/:partners')
 .all((req, res, next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
 .get((req, res, next) => {
-    res.end(`Will send details of the campsite: ${req.params.campsiteId} to you`);
+    res.end(`Will send details of the promotion: ${req.params.promotionId} to you`);
 })
-.post('/campsites/:campsiteId', (req, res, next) => {
+.post((req, res, next) => {
     res.statusCode = 403;
-    res.end(`POST operation not supported on /campsites/${req.params.campsiteId}`);
+    res.end(`POST operation not supported on /promotions/${req.params.promotionId}`);
 })
-.put('/campsites/:campsiteId', (req, res, next) => {
-    res.write(`Updating the campsite: ${req.params.campsiteId}/n`);
-    res.end(`Will update the campsite: ${req.body.name}
+.put((req, res, next) => {
+    res.write(`Updating the promotion: ${req.params.promotionId}/n`);
+    res.end(`Will update the promotion: ${req.body.name}
     with description: ${req.body.description}`);
 })
 .delete((req, res, next) => {
-    res.end(`Deleting campsite: ${req.params.campsiteId}`);
+    res.end(`Deleting promotion: ${req.params.promotionId}`);
 });
 
-campsiteRouter.route('/partners/:partnerId')
+campsiteRouter.route('/')
 .all((req, res, next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
@@ -33,12 +33,14 @@ campsiteRouter.route('/partners/:partnerId')
     res.end('Will send all the campsites to you');
 })
 .post((req, res) => {
-    res.end(`Will add the campsite: ${req.body.name} with description: ${req.body.description}`);
+    res.end(`Will add the promotion: ${req.body.name} with description: ${req.body.description}`);
 })
 .put((req, res) => {
     res.statusCode = 403;
-    res.end('PUT operation not supported on /campsites');
+    res.end('PUT operation not supported on /promotions');
 })
 .delete((req, res) => {
-    res.end('Deleting all campsites');
+    res.end('Deleting all promotions');
 });
+
+module.exports = promotionRouter;
